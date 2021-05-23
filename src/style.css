@@ -1,0 +1,22 @@
+.product_item_container_within {
+  margin: auto;
+  position: relative;
+}
+
+.product_item_container {
+  border-style: groove;
+  margin: 0.5em;
+}
+
+.products_layout {
+  margin: auto;
+  justify-content: center;
+}
+
+.product_item_title {
+  margin-bottom: 0.5em;
+}
+
+.main_container {
+  text-align: center;
+}

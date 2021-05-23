@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { store } from "./redux/store";
+import "./App.css";
+import { Provider } from "react-redux";
+import { ProductItemContainer } from "./product/index";
+import { headlines } from "./common/titles/headlines";
+import { SearchProduct } from "./productSearch";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {});
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="contianer main_container">
+      <Provider store={store}>
+        <h1>{headlines.MAIN_HEADLINE}</h1>
+        <SearchProduct />
+        <ProductItemContainer />
+      </Provider>
     </div>
   );
 }
