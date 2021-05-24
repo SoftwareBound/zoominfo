@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 const Input = ({ change_func, value }) => {
-  useEffect(() => {
-    console.log(value);
-  }, [value]);
-
   return (
     <div>
       <input
