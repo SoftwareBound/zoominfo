@@ -3,6 +3,7 @@ import ProductItem from "./ProductItem";
 import { useSelector, useDispatch } from "react-redux";
 import { loadProducts } from "../redux/actions/productActions";
 import { productActions } from "../redux/actions/actionType";
+import Modal from "../common/components/Modal.js";
 import "../style.css";
 const ProductItemContainer = () => {
   const dispatch = useDispatch();

@@ -4,7 +4,6 @@ import { initializeOffset, increaseOffset } from "./resultsActions";
 import { getApi, getResults } from "../../common/functions/apiFunctions";
 export function loadProducts(offset) {
   return async function (dispatch) {
-    debugger;
     const dataFromApi = await getApi("http://localhost:4000/", 10, offset);
 
     dispatch(getProducts(dataFromApi));
