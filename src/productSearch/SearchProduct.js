@@ -18,8 +18,7 @@ const SearchProduct = () => {
   const clearResults = () => {
     setSearchVar("");
     dispatch(initializeOffset());
-
-    return dispatch(clearSearchedProducts(resultsOffset));
+    dispatch(clearSearchedProducts(0));
   };
   return (
     <div>

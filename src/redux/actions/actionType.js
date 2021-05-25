@@ -1,6 +1,7 @@
 export const productActions = {
   LOAD_PRODUCTS: "LOAD PRODUCTS",
   GET_PRODUCTS: "GET_PRODUCTS",
+  ADD_PRODUCTS: "ADD_PRODUCTS",
 };
 
 export const resultsActions = {
