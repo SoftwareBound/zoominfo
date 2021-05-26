@@ -7,18 +7,29 @@ import {
   clearSearchedProducts,
 } from "../redux/actions/productActions";
 import { initializeOffset } from "../redux/actions/resultsActions";
+import {
+  setSearchWord,
+  clearSearchWord,
+} from "../redux/actions/searchwordActions";
 const SearchProduct = () => {
   const [searchVar, setSearchVar] = useState("");
   const dispatch = useDispatch();
   const resultsOffset = useSelector((state) => state.resultsReducer);
+  const searchWord = useSelector((state) => state.searchwordReducer);
 
   const getResults = () => {
-    dispatch(getSearchedProducts(resultsOffset, searchVar));
+    if (searchVar === "") {
+      return;
+    }
+
+    dispatch(setSearchWord(searchVar));
+    dispatch(getSearchedProducts(0, searchVar));
   };
   const clearResults = () => {
     setSearchVar("");
     dispatch(initializeOffset());
     dispatch(clearSearchedProducts(0));
+    dispatch(clearSearchWord());
   };
   return (
     <div>

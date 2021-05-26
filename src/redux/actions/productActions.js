@@ -1,13 +1,14 @@
 import { productActions } from "./actionType";
 import { initializeOffset, increaseOffset } from "./resultsActions";
-
+import { setScrollingHasMore } from "./scrollingActions";
 import { getApi, getResults } from "../../common/functions/apiFunctions";
 
 export function loadProducts(offset) {
   return async function (dispatch) {
     const dataFromApi = await getApi("http://localhost:4000/", 10, offset);
+
     if (!dataFromApi.length) {
-      return;
+      return dispatch(setScrollingHasMore(false));
     }
     if (offset) {
       dispatch(addProducts(dataFromApi));
@@ -27,14 +28,23 @@ export function addProducts(data) {
 
 export function getSearchedProducts(offset, searchValue) {
   return async function (dispatch) {
-    dispatch(initializeOffset());
     const resultsFromApi = await getResults(
       "http://localhost:4000/",
       10,
       offset,
       searchValue
     );
-    dispatch(getProducts(resultsFromApi));
+    if (!resultsFromApi.length) {
+      return dispatch(setScrollingHasMore(false));
+    }
+
+    if (offset !== 0) {
+      dispatch(addProducts(resultsFromApi));
+    } else {
+      dispatch(initializeOffset());
+      dispatch(getProducts(resultsFromApi));
+    }
+    dispatch(increaseOffset());
   };
 }
 
