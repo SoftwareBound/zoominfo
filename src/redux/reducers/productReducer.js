@@ -6,6 +6,8 @@ export function productReducer(state = [], action) {
       return action.products;
     case productActions.ADD_PRODUCTS:
       return [...state, ...action.products];
+    case productActions.CLEAR_PRODUCTS:
+      return [];
     default:
       return state;
   }

@@ -15,8 +15,22 @@
 
 .product_item_title {
   margin-bottom: 0.5em;
+  font-weight: bold;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .main_container {
   text-align: center;
+  background-image: url(https://i0.wp.com/www.eatthis.com/wp-content/uploads//media/images/ext/567640979/shopping-cart-grocery-store.jpg?resize=640%2C360&ssl=1);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.button {
+  margin: 1em;
+}
+
+.button_container {
+  display: inline-flex;
 }

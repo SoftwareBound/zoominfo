@@ -2,12 +2,17 @@ import { productActions } from "./actionType";
 import { initializeOffset, increaseOffset } from "./resultsActions";
 import { setScrollingHasMore } from "./scrollingActions";
 import { getApi, getResults } from "../../common/functions/apiFunctions";
-
+import { urls } from "../../common/titles/urls";
+export function clearProducts() {
+  return {
+    type: productActions.CLEAR_PRODUCTS,
+  };
+}
 export function loadProducts(offset) {
   return async function (dispatch) {
-    const dataFromApi = await getApi("http://localhost:4000/", 10, offset);
-
+    const dataFromApi = await getApi(urls.serverUrl, 10, offset);
     if (!dataFromApi.length) {
+      /* dispatch(clearProducts()); */
       return dispatch(setScrollingHasMore(false));
     }
     if (offset) {
@@ -29,11 +34,16 @@ export function addProducts(data) {
 export function getSearchedProducts(offset, searchValue) {
   return async function (dispatch) {
     const resultsFromApi = await getResults(
-      "http://localhost:4000/",
+      urls.serverUrl,
       10,
       offset,
       searchValue
     );
+    debugger;
+    if (!resultsFromApi) {
+      dispatch(clearProducts());
+      dispatch(setScrollingHasMore(false));
+    }
     if (!resultsFromApi.length) {
       return dispatch(setScrollingHasMore(false));
     }
@@ -45,11 +55,15 @@ export function getSearchedProducts(offset, searchValue) {
       dispatch(getProducts(resultsFromApi));
     }
     dispatch(increaseOffset());
+    if (resultsFromApi.length < 10) {
+      dispatch(setScrollingHasMore(false));
+    }
   };
 }
 
 export function clearSearchedProducts(offset) {
   return async function (dispatch) {
     await dispatch(loadProducts(offset));
+    dispatch(setScrollingHasMore(true));
   };
 }

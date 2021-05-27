@@ -8,6 +8,8 @@ import {
 
 import InfiniteScroll from "react-infinite-scroll-component";
 import "../style.css";
+import Spinner from "react-bootstrap/Spinner";
+import { messages } from "../common/titles/headlines";
 const ProductItemContainer = () => {
   const dispatch = useDispatch();
   const productsList = useSelector((state) => state.productReducer);
@@ -20,14 +22,23 @@ const ProductItemContainer = () => {
     if (productsList.length === 0) {
       dispatch(loadProducts(offset));
     }
-  }, [productsList]);
+  }, []);
   useEffect(() => {
     if (!hasMoreFlag) {
       setHasMore(false);
+    } else {
+      setHasMore(true);
     }
   }, [hasMoreFlag]);
   if (productsList.length === 0) {
-    return <div>Loading</div>;
+    return (
+      <div>
+        <h2>{messages.NO_FOUND}</h2>
+        <Spinner animation="grow" size="sm" />
+        <Spinner animation="grow" size="sm" />
+        <Spinner animation="grow" size="sm" />
+      </div>
+    );
   }
 
   const getMoreData = () => {
@@ -43,8 +54,8 @@ const ProductItemContainer = () => {
       dataLength={productsList.length}
       next={getMoreData}
       hasMore={hasMore}
-      loader={<h4>Loading...</h4>}
-      endMessage="This is it!"
+      loader={<Spinner animation="grow" />}
+      endMessage={<h1>This is it</h1>}
     >
       <div className=" row products_layout">
         {productsList.map((product) => {

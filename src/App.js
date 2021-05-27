@@ -5,9 +5,9 @@ import { ProductItemContainer } from "./product/index";
 import { headlines } from "./common/titles/headlines";
 import { SearchProduct } from "./productSearch";
 import { useEffect } from "react";
+import "./style.css";
 
 function App() {
-  useEffect(() => {});
   return (
     <div className="contianer main_container">
       <Provider store={store}>

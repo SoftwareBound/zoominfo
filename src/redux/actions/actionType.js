@@ -2,6 +2,7 @@ export const productActions = {
   LOAD_PRODUCTS: "LOAD PRODUCTS",
   GET_PRODUCTS: "GET_PRODUCTS",
   ADD_PRODUCTS: "ADD_PRODUCTS",
+  CLEAR_PRODUCTS: "CLEAR_PRODUCTS",
 };
 
 export const resultsActions = {
